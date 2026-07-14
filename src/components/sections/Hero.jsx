@@ -1,13 +1,6 @@
 import React from 'react';
-import { Play, Leaf, Award, Flame, Truck } from 'lucide-react';
+import { Play } from 'lucide-react';
 import heroBannerImg from '../../assets/images/WhatsApp Image 2026-07-14 at 02.14.07.jpeg';
-
-const benefits = [
-  { icon: Leaf,  label1: '100% Pure',     label2: 'No Additives'   },
-  { icon: Award, label1: 'Premium',        label2: 'Quality'        },
-  { icon: Flame, label1: 'Strong Aroma',  label2: 'Great Taste'    },
-  { icon: Truck, label1: 'Pan India',      label2: 'Delivery'       },
-];
 
 export default function Hero() {
   return (
@@ -23,9 +16,9 @@ export default function Hero() {
           className="block w-full h-auto select-none pointer-events-none"
         />
 
-        {/* Overlay — sits on top, covers left ~45% */}
+        {/* Overlay — sits on top, covers left ~35% */}
         <div className="absolute inset-0 flex items-center">
-          <div className="w-[45%] h-full flex items-center pl-[5%] pr-4">
+          <div className="w-[35%] h-full flex items-center pl-[5%] pr-4">
             <div className="space-y-6 w-full">
 
               {/* Heading */}

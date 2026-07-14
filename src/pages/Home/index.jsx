@@ -3,13 +3,11 @@ import Hero from '../../components/sections/Hero';
 import TrustStatsStrip from '../../components/sections/TrustStatsStrip';
 import ShopByCategory from '../../components/sections/ShopByCategory';
 import BestSellers from '../../components/sections/BestSellers';
-import PromoBannerGrid from '../../components/sections/PromoBannerGrid';
 import BrandStory from '../../components/sections/BrandStory';
 import WhyChoose from '../../components/sections/WhyChoose';
 import HingBenefits from '../../components/sections/HingBenefits';
 import IngredientsQuality from '../../components/sections/IngredientsQuality';
 import ManufacturingProcess from '../../components/sections/ManufacturingProcess';
-import RecipeInspiration from '../../components/sections/RecipeInspiration';
 import Testimonials from '../../components/sections/Testimonials';
 import Certifications from '../../components/sections/Certifications';
 import FAQPreview from '../../components/sections/FAQPreview';
@@ -37,9 +35,6 @@ export default function Home() {
 
       {/* 4. Best Sellers */}
       <BestSellers />
-
-      {/* 5. Promotional Banner Grid */}
-      <PromoBannerGrid />
 
       {/* 6. Brand Story */}
       <BrandStory />

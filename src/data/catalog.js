@@ -1,4 +1,5 @@
 // Verified 20-product catalog data from the official site prabhukul.com
+import superCompoundHing from '../assets/images/super-compound-hing.png';
 export const products = [
   {
     id: 1,
@@ -174,7 +175,7 @@ export const products = [
     category: 'Hing',
     description: 'Concentrated kitchen spice offering a robust scent and strong digestive qualities.',
     rating: 4.7,
-    image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing31-600x744.jpg'
+    image: superCompoundHing
   },
   {
     id: 20,

@@ -5,10 +5,10 @@ import { faqs } from '../../data/homeData';
 
 export default function FAQPreview() {
   const [open, setOpen] = useState(null);
-  const visible = faqs.slice(0, 6);
+  const visible = faqs.slice(0, 3);
 
   return (
-    <section className="w-full  py-14" id="faq-preview">
+    <section className="w-full bg-[#F5EDE0] py-14 border-t border-[#D4A64A]/25" id="faq-preview">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Got Questions?</p>
@@ -18,7 +18,7 @@ export default function FAQPreview() {
 
         <div className="space-y-2">
           {visible.map((item, i) => (
-            <div key={i} className="border border-[#D4A64A]/25  overflow-hidden">
+            <div key={i} className="border border-[#D4A64A]/25 overflow-hidden bg-white">
               <button
                 className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover: transition-colors"
                 onClick={() => setOpen(open === i ? null : i)}

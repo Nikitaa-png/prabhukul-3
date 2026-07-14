@@ -172,7 +172,7 @@ export default function PromoBannerGrid() {
   );
 }
 
-function CollectionCard({ product, badge }) {
+function CollectionCard({ product, _badge }) {
   const stars = Math.round(product.rating);
   const weight = product.title.match(/\d+\s*[gG]m?/)?.[0] ?? 'Standard';
 
@@ -181,14 +181,14 @@ function CollectionCard({ product, badge }) {
 
       {/* Image */}
       <div className="relative bg-white flex items-center justify-center px-4 pt-8 pb-3" style={{ minHeight: '200px' }}>
-        <button aria-label="Wishlist" className="absolute top-2 right-2 w-7 h-7 rounded-full border border-[#E8DDD0] bg-white flex items-center justify-center hover:border-[#3E0F12] transition-all">
+        <button aria-label="Wishlist" className="absolute top-2 right-2 w-7 h-7 rounded-full border border-[#E8DDD0] bg-white flex items-center justify-center hover:border-[#3E0F12] transition-all z-10">
           <Heart className="w-3.5 h-3.5 text-[#9E9087]" />
         </button>
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}`} className="absolute inset-0 flex items-center justify-center p-8">
           <img
             src={product.image}
             alt={product.title}
-            className="h-[160px] w-full object-contain group-hover:scale-105 transition-transform duration-500"
+            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
           />
         </Link>
       </div>

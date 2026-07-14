@@ -124,11 +124,11 @@ function ProductCard({ product }) {
           BEST SELLER
         </div>
 
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}`} className="absolute inset-0 flex items-center justify-center p-8">
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
           />
         </Link>
 

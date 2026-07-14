@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
 import { contactInfo } from '../../data/homeData';
-import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 
 export default function ContactPreview() {
   return (
-    <section className="w-full py-14" id="contact-preview" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section className="w-full bg-[#F5EDE0] py-14 border-t border-[#D4A64A]/25" id="contact-preview">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Reach Out</p>
@@ -51,18 +50,18 @@ export default function ContactPreview() {
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 text-left">
               <Link
                 to="/contact"
-                className="inline-block  text-white text-[11px] font-semibold tracking-widest uppercase px-7 py-3 hover: transition-colors"
+                className="inline-block bg-[#3E0F12] text-white text-[11px] font-semibold tracking-widest uppercase px-7 py-3 hover:bg-[#2D0B0C] transition-colors"
               >
-                Send a Message
+                Get in Touch
               </Link>
             </div>
           </div>
 
           {/* Map preview */}
-          <div className="border border-[#D4A64A]/30 overflow-hidden">
+          <div className="border border-[#D4A64A]/30 overflow-hidden bg-white">
             <div className="aspect-video  flex flex-col items-center justify-center gap-3 p-8 text-center">
               <MapPin className="w-8 h-8 text-[#3E0F12]" strokeWidth={1.4} />
               <p className="font-serif text-[15px] font-bold text-[#2D0B0C]">Hathras, Uttar Pradesh</p>

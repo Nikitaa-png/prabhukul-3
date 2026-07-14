@@ -3,6 +3,11 @@
 // Every section's content lives here for easy CMS migration.
 // ─────────────────────────────────────────────────────────────
 
+import blogImg1 from '../assets/images/about-hing-1.jpg';
+import blogImg2 from '../assets/images/about-hing-2.jpg';
+import blogImg3 from '../assets/images/about-digestives.jpg';
+import blogImg4 from '../assets/images/about-tea.jpg';
+
 // 2. Shop by Category
 export const categories = [
   { id: 1, name: 'Hing',       slug: '/shop?category=Hing',       image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing24-600x744.jpg' },
@@ -182,7 +187,7 @@ export const blogs = [
     excerpt: 'From ancient Ayurvedic texts to your modern kitchen — how asafoetida became India\'s most indispensable spice.',
     date: 'June 2026',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1596097635083-8c9afd4f3f4b?w=800&q=80',
+    image: blogImg1,
     link: '/blog',
     featured: true,
   },
@@ -192,7 +197,7 @@ export const blogs = [
     excerpt: 'The soil, climate, and artisan knowledge of Hathras make it the undisputed capital of hing production in India.',
     date: 'May 2026',
     readTime: '4 min read',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
+    image: blogImg2,
     link: '/blog',
   },
   {
@@ -201,7 +206,7 @@ export const blogs = [
     excerpt: 'Traditionally prized for digestion, hing has a range of culinary and wellness benefits that stand the test of time.',
     date: 'April 2026',
     readTime: '3 min read',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
+    image: blogImg3,
     link: '/blog',
   },
   {
@@ -210,7 +215,7 @@ export const blogs = [
     excerpt: 'Pure, compound, chura, dana — here\'s a simple guide to picking the right Prabhukul hing for every dish.',
     date: 'March 2026',
     readTime: '3 min read',
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80',
+    image: blogImg4,
     link: '/blog',
   },
 ];
@@ -265,5 +270,5 @@ export const footerData = {
     { name: 'YouTube',    href: '#', icon: 'Youtube' },
     { name: 'WhatsApp',   href: '#', icon: 'MessageCircle' },
   ],
-  poweredBy: { label: 'Kalvix Nexus', href: 'https://www.kalvixnexus.com' },
+  poweredBy: { label: 'Kalvix Nexus', href: 'https://kalvixnexus.com' },
 };
