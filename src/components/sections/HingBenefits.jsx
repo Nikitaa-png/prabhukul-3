@@ -5,7 +5,7 @@ import benefitsImg from '../../assets/images/uploaded-hing-compound-benefits.jpg
 
 export default function HingBenefits() {
   return (
-    <section className="w-full py-16 bg-[#FAF6F0]" id="hing-benefits">
+    <section className="w-full py-16" id="hing-benefits">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
