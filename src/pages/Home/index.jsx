@@ -5,7 +5,6 @@ import ShopByCategory from '../../components/sections/ShopByCategory';
 import BestSellers from '../../components/sections/BestSellers';
 import BrandStory from '../../components/sections/BrandStory';
 import WhyChoose from '../../components/sections/WhyChoose';
-import HingBenefits from '../../components/sections/HingBenefits';
 import IngredientsQuality from '../../components/sections/IngredientsQuality';
 import ManufacturingProcess from '../../components/sections/ManufacturingProcess';
 import Testimonials from '../../components/sections/Testimonials';
@@ -42,8 +41,6 @@ export default function Home() {
       {/* 7. Why Choose Prabhukul */}
       <WhyChoose />
 
-      {/* 8. Benefits of Hing */}
-      <HingBenefits />
 
       {/* 9. Ingredients & Quality */}
       <IngredientsQuality />
