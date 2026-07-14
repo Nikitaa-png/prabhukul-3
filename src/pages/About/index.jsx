@@ -345,58 +345,62 @@ export default function About() {
           </section>
 
 
-          {/* 9. Certifications & Trust */}
-          <section className="text-left space-y-12">
-            <div className="space-y-3 text-center md:text-left">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#C8922A] font-bold">Compliance</p>
+          {/* 9 & 10. Certifications & Trust + CTA Section Side-by-Side */}
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center text-left py-10 border-t border-[#2D0B0C]/10 pt-16" id="certs-cta-split">
+            
+            {/* Left Column: Certifications & Trust */}
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-[#C8922A] font-bold">Compliance</p>
+                <h2 
+                  className="font-serif text-3xl font-bold text-[#3E0F12] uppercase tracking-wider"
+                  style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
+                >
+                  Certifications & Trust
+                </h2>
+                <div className="w-16 h-[1px] bg-[#D4A64A]" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {certifications.map((cert) => (
+                  <div 
+                    key={cert.id}
+                    className="flex flex-col items-center gap-3 p-6 border border-[#D4A64A]/25 bg-white text-center shadow-sm hover:shadow-md hover:border-[#C8922A]/60 hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <div className="w-9 h-9 rounded-full bg-[#163728]/8 flex items-center justify-center">
+                      <ShieldCheck className="w-4.5 h-4.5 text-[#163728]" strokeWidth={1.8} />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-[12px] font-bold text-[#2D0B0C] uppercase tracking-wider">{cert.title}</h3>
+                      <p className="font-sans text-[10px] text-[#5C534E] mt-1 leading-relaxed">{cert.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: CTA Section */}
+            <div className="space-y-6 bg-white/40 border border-[#D4A64A]/20 p-8 sm:p-10 shadow-sm text-center md:text-left">
               <h2 
-                className="font-serif text-3xl font-bold text-[#3E0F12] uppercase tracking-wider"
+                className="font-serif text-3xl sm:text-4xl font-bold text-[#3E0F12] uppercase tracking-wider leading-tight"
                 style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
               >
-                Certifications & Trust
+                Experience the Authentic Taste of Hathras.
               </h2>
               <div className="w-16 h-[1px] bg-[#D4A64A] mx-auto md:mx-0" />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {certifications.map((cert) => (
-                <div 
-                  key={cert.id}
-                  className="flex flex-col items-center gap-4 p-8 border border-[#D4A64A]/25 bg-white text-center shadow-sm hover:shadow-md hover:border-[#C8922A]/60 hover:-translate-y-0.5 transition-all duration-300"
+              <p className="font-sans text-[13px] text-[#5C534E] leading-relaxed">
+                Unlock restaurant-quality rich flavor and aroma in your home cooking. Visit our store catalog to purchase our traditional compounded spices today.
+              </p>
+              <div className="pt-2">
+                <Link 
+                  to="/shop"
+                  className="inline-flex items-center gap-2 border border-[#3E0F12] bg-[#3E0F12] text-white text-[11px] font-semibold tracking-widest uppercase px-8 py-3.5 hover:bg-[#2D0B0C] hover:border-[#2D0B0C] transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#163728]/8 flex items-center justify-center">
-                    <ShieldCheck className="w-5 h-5 text-[#163728]" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-[13px] font-bold text-[#2D0B0C] uppercase tracking-wider">{cert.title}</h3>
-                    <p className="font-sans text-[11px] text-[#5C534E] mt-1 leading-relaxed">{cert.desc}</p>
-                  </div>
-                </div>
-              ))}
+                  Shop Now <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
-          </section>
 
-
-          {/* 10. CTA Section */}
-          <section className="py-16 text-center max-w-2xl mx-auto space-y-6">
-            <h2 
-              className="font-serif text-3xl sm:text-4xl font-bold text-[#3E0F12] uppercase tracking-wider"
-              style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
-            >
-              Experience the Authentic Taste of Hathras.
-            </h2>
-            <div className="w-16 h-[1px] bg-[#D4A64A] mx-auto" />
-            <p className="font-sans text-[13px] sm:text-[14px] text-[#5C534E] leading-relaxed">
-              Unlock restaurant-quality rich flavor and aroma in your home cooking. Visit our store catalog to purchase our traditional compounded spices today.
-            </p>
-            <div className="pt-2">
-              <Link 
-                to="/shop"
-                className="inline-flex items-center gap-2 border border-[#3E0F12] bg-[#3E0F12] text-white text-[11px] font-semibold tracking-widest uppercase px-8 py-3.5 hover:bg-[#2D0B0C] hover:border-[#2D0B0C] transition-all duration-300"
-              >
-                Shop Now <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
           </section>
 
         </div>
