@@ -188,7 +188,7 @@ function CollectionCard({ product, _badge }) {
           <img
             src={product.image}
             alt={product.title}
-            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           />
         </Link>
       </div>
