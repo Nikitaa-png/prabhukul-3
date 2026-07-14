@@ -15,7 +15,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="w-full  border-t border-[#D4A64A]/25 py-12" id="newsletter">
+    <section className="w-full bg-[#F5EDE0] border-t border-[#D4A64A]/25 py-12" id="newsletter">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Stay in the Loop</p>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2D0B0C] mb-2">
@@ -39,7 +39,7 @@ export default function Newsletter() {
             />
             <button
               type="submit"
-              className="flex items-center justify-center gap-2  text-white text-[11px] font-semibold tracking-widest uppercase px-6 py-3 hover: transition-colors shrink-0"
+              className="flex items-center justify-center gap-2 bg-[#3E0F12] text-white text-[11px] font-semibold tracking-widest uppercase px-6 py-3 hover:bg-[#2D0B0C] transition-colors shrink-0"
             >
               <Send className="w-3.5 h-3.5" />
               Subscribe

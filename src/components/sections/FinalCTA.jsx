@@ -4,7 +4,7 @@ import { finalCTA } from '../../data/homeData';
 
 export default function FinalCTA() {
   return (
-    <section className="w-full py-16" id="final-cta">
+    <section className="w-full bg-[#F5EDE0] py-16" id="final-cta">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <div className="w-12 h-[1px] bg-[#D4A64A]/40 mx-auto mb-6" />
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-[#2D0B0C] leading-tight mb-4">

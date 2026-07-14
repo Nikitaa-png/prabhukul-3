@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
 import { contactInfo } from '../../data/homeData';
+import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 
 export default function ContactPreview() {
   return (
-    <section className="w-full bg-[#F5EDE0] py-14 border-t border-[#D4A64A]/25" id="contact-preview">
+    <section className="w-full py-14 border-t border-[#D4A64A]/25" id="contact-preview" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Reach Out</p>
