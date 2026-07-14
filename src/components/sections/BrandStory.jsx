@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf, ShieldCheck, Wind, Users } from 'lucide-react';
-import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 import productImg from '../../assets/images/about-hing-2.jpg';
 
 const trustPillars = [
@@ -13,7 +12,7 @@ const trustPillars = [
 
 export default function BrandStory() {
   return (
-    <section className="w-full py-16" id="brand-story" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section className="w-full bg-[#F5EDE0] py-16" id="brand-story">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
