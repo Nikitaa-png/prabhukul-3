@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Custom base styles can be added here if needed */
+body {
+  @apply antialiased text-gray-900 bg-[#FAF6F0] font-sans;
+}
