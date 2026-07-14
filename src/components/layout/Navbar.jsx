@@ -12,6 +12,7 @@ export default function Navbar() {
     { name: 'Shop', href: '/shop' },
     { name: 'Best Sellers', href: '/best-sellers' },
     { name: 'Blogs', href: '/blog' },
+    { name: 'FAQs', href: '/faq' },
     { name: 'Contact Us', href: '/contact' },
   ];
 
@@ -19,7 +20,6 @@ export default function Navbar() {
     { name: 'Our Story', href: '/our-story' },
     { name: 'Ingredients & Quality', href: '/ingredients-quality' },
     { name: 'Why Choose Us', href: '/why-choose-us' },
-    { name: 'FAQs', href: '/faq' },
     { name: 'Bulk Enquiry', href: '/bulk-enquiry' },
   ];
 
