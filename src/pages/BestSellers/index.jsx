@@ -39,7 +39,7 @@ export default function BestSellersPage() {
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {items.map((product) => {
               const stars = Math.round(product.rating);
               const weight = product.title.match(/\d+\s*[gG]m?/)?.[0] ?? 'Standard';
@@ -57,7 +57,7 @@ export default function BestSellersPage() {
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="max-h-[220px] max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        className="max-h-[170px] max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
                       />
                     </Link>
                     <button

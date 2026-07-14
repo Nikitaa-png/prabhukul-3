@@ -18,7 +18,7 @@ export default function BestSellers() {
   const items = bestSellerIds.map((id) => products.find((p) => p.id === id)).filter(Boolean);
 
   const scroll = (dir) => {
-    if (scrollRef.current) scrollRef.current.scrollBy({ left: dir * 300, behavior: 'smooth' });
+    if (scrollRef.current) scrollRef.current.scrollBy({ left: dir * 230, behavior: 'smooth' });
   };
 
   return (
@@ -114,7 +114,7 @@ function ProductCard({ product }) {
   const stars = Math.round(product.rating);
 
   return (
-    <div className="group flex flex-col bg-white border border-[#E8DDD0] hover:shadow-lg transition-all duration-300 shrink-0 w-[220px] sm:w-[240px]">
+    <div className="group flex flex-col bg-white border border-[#E8DDD0] hover:shadow-lg transition-all duration-300 shrink-0 w-[190px] sm:w-[210px]">
       {/* Image area */}
       <div className="relative overflow-hidden bg-[#FAF6F0] aspect-[4/5]">
         {/* BEST SELLER ribbon */}
