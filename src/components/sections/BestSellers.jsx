@@ -116,7 +116,7 @@ function ProductCard({ product }) {
   return (
     <div className="group flex flex-col bg-white border border-[#E8DDD0] hover:shadow-lg transition-all duration-300 shrink-0 w-[190px] sm:w-[210px]">
       {/* Image area */}
-      <div className="relative overflow-hidden bg-[#FAF6F0] aspect-[4/5]">
+      <div className="h-[320px] w-full flex items-center justify-center p-4 overflow-visible bg-[#FAF6F0] relative">
         {/* BEST SELLER ribbon */}
         <div className="absolute top-0 left-0 z-10 bg-[#3E0F12] text-white text-[8px] font-bold tracking-widest uppercase px-2 py-3 leading-tight text-center"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
@@ -124,18 +124,18 @@ function ProductCard({ product }) {
           BEST SELLER
         </div>
 
-        <Link to={`/product/${product.id}`} className="absolute inset-0 flex items-center justify-center p-8">
+        <Link to={`/product/${product.id}`} className="w-full h-full flex items-center justify-center">
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+            className="max-w-full max-h-full w-auto h-auto object-contain"
           />
         </Link>
 
         {/* Wishlist */}
         <button
           aria-label="Add to wishlist"
-          className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white border border-[#E8DDD0] flex items-center justify-center hover:border-[#3E0F12] transition-all"
+          className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white border border-[#E8DDD0] flex items-center justify-center hover:border-[#3E0F12] transition-all z-10"
         >
           <Heart className="w-3.5 h-3.5 text-[#5C534E]" />
         </button>
