@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SEO from '../../components/common/SEO';
-import { blogs } from '../../data/homeData';
+import { getBlogs } from '../../services/db';
 import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 import { Clock, BookOpen } from 'lucide-react';
 
 export default function Blog() {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    setBlogs(getBlogs().filter(b => b.published !== false));
+  }, []);
   return (
     <>
       <SEO 

@@ -25,6 +25,9 @@ export default {
           950: '#172434',
         },
       },
+      maxWidth: {
+        '7xl': '1400px',
+      },
     },
   },
   plugins: [],

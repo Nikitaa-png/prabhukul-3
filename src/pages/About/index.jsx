@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SEO from '../../components/common/SEO';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Check } from 'lucide-react';
 import { certifications } from '../../data/homeData';
+import { getAboutContent } from '../../services/db';
 
 // Background and Assets
 import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
@@ -44,6 +45,16 @@ const qualityChecks = [
 ];
 
 export default function About() {
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    setContent(getAboutContent());
+  }, []);
+
+  if (!content) return <div className="min-h-screen flex items-center justify-center text-[#5C534E]">Loading...</div>;
+
+  const milestones = content.milestones || timelineMilestones;
+
   return (
     <>
       <SEO 
@@ -72,10 +83,10 @@ export default function About() {
             className="font-serif text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-wide text-[#3E0F12] uppercase"
             style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
           >
-            About Prabhukul
+            {content.heroTitle || 'About Prabhukul'}
           </h1>
           <p className="font-serif text-lg sm:text-xl text-[#163728] italic max-w-2xl mx-auto">
-            "Rooted in Hathras, Uttar Pradesh — Dedicated to Culinary Purity & Legacy."
+            "{content.heroSubtitle || 'Rooted in Hathras, Uttar Pradesh — Dedicated to Culinary Purity & Legacy.'}"
           </p>
           <div className="flex justify-center mt-4">
             <span className="text-[#D4A64A] text-xl">✦ ❖ ✦</span>
@@ -90,7 +101,7 @@ export default function About() {
             {/* Left Story Image */}
             <div className="border border-[#D4A64A]/30 p-2.5 bg-white shadow-md max-w-lg mx-auto md:mx-0">
               <img 
-                src={brandStoryImg} 
+                src={content.storyImage || brandStoryImg} 
                 alt="Prabhukul Spice Crafting" 
                 className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
@@ -102,18 +113,25 @@ export default function About() {
                 className="font-serif text-3xl sm:text-4xl font-bold text-[#163728] uppercase leading-tight"
                 style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
               >
-                खाने का असली स्वाद,<br />प्रभुकुल हींग के साथ।
+                {content.storySubtitle || 'खाने का असली स्वाद, प्रभुकुल हींग के साथ।'}
               </h2>
               <div className="w-16 h-[1px] bg-[#D4A64A]" />
-              <p className="font-sans text-[13px] sm:text-[14px] text-[#5C534E] leading-relaxed">
-                For nearly four decades, Prabhukul has been a trusted name in authentic asafoetida. Born in Hathras, the compounding capital of India, we preserve the traditional processing techniques that give our hing its highly aromatic profile and strong flavor.
-              </p>
-              <p className="font-sans text-[13px] sm:text-[14px] text-[#5C534E] leading-relaxed">
-                We believe that pure food leads to robust wellness. From selection of raw resin crystals to gentle blending and vacuum-sealed packaging, we guarantee standard consistency and authentic taste in every kitchen.
-              </p>
+              {content.storyBody ? content.storyBody.split('\n\n').map((paragraph, idx) => (
+                <p key={idx} className="font-sans text-[13px] sm:text-[14px] text-[#5C534E] leading-relaxed">
+                  {paragraph}
+                </p>
+              )) : (
+                <>
+                  <p className="font-sans text-[13px] sm:text-[14px] text-[#5C534E] leading-relaxed">
+                    For nearly four decades, Prabhukul has been a trusted name in authentic asafoetida. Born in Hathras, the compounding capital of India, we preserve the traditional processing techniques that give our hing its highly aromatic profile and strong flavor.
+                  </p>
+                  <p className="font-sans text-[13px] sm:text-[14px] text-[#5C534E] leading-relaxed">
+                    We believe that pure food leads to robust wellness. From selection of raw resin crystals to gentle blending and vacuum-sealed packaging, we guarantee standard consistency and authentic taste in every kitchen.
+                  </p>
+                </>
+              )}
             </div>
           </section>
-
 
           {/* 3. Heritage & Legacy Milestones */}
           <section className="text-left space-y-12">
@@ -123,13 +141,13 @@ export default function About() {
                 className="font-serif text-3xl font-bold text-[#3E0F12] uppercase tracking-wider"
                 style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
               >
-                Heritage & Legacy
+                {content.storyTitle || 'Heritage & Legacy'}
               </h2>
               <div className="w-16 h-[1px] bg-[#D4A64A] mx-auto md:mx-0" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {timelineMilestones.map((m) => (
+              {milestones.map((m) => (
                 <div key={m.year} className="p-6 bg-white/80 border border-[#D4A64A]/25 rounded-sm hover:shadow-md transition-shadow relative pt-8">
                   <div className="absolute top-4 left-6 bg-[#3E0F12] text-white font-serif text-[11px] font-bold uppercase tracking-widest px-2.5 py-0.5">
                     {m.year}

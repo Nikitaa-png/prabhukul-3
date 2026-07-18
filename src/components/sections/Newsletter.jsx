@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
-import { newsletterContent } from '../../data/homeData';
+import { getBlocks, getHomeData } from '../../services/db';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [config, setConfig] = useState(null);
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    setConfig(getBlocks().newsletter || { enabled: true, heading: 'Stay Connected with Prabhukul', subtitle: 'Stay in the Loop' });
+    setContent(getHomeData().newsletterContent || { heading: 'Stay Connected with Prabhukul', subtext: 'Subscribe to receive updates...' });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,14 +21,16 @@ export default function Newsletter() {
     }
   };
 
+  if (!config || !config.enabled) return null;
+
   return (
-    <section className="w-full bg-[#F5EDE0] border-t border-[#D4A64A]/25 py-12" id="newsletter">
+    <section className="w-full bg-[#F8F3EA] border-t border-[#D4A64A]/25 py-12" id="newsletter">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Stay in the Loop</p>
+        <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">{config.subtitle || 'Stay in the Loop'}</p>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2D0B0C] mb-2">
-          {newsletterContent.heading}
+          {config.heading || 'Stay Connected with Prabhukul'}
         </h2>
-        <p className="font-sans text-[13px] text-[#5C534E] mb-6">{newsletterContent.subtext}</p>
+        <p className="font-sans text-[13px] text-[#5C534E] mb-6">{content.subtext || 'Subscribe to receive updates...'}</p>
 
         {submitted ? (
           <p className="font-sans text-[13px] text-[#163728] font-medium">

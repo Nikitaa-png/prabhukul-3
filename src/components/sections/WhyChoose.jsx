@@ -10,7 +10,7 @@ export default function WhyChoose() {
   const teaserChoose = whyChoose.slice(0, 3);
 
   return (
-    <section className="w-full bg-[#F5EDE0] py-16" id="why-choose">
+    <section className="w-full bg-[#F8F3EA] py-16" id="why-choose">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

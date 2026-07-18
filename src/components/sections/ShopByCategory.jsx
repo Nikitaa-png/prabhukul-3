@@ -1,78 +1,67 @@
-import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { categories } from '../../data/homeData';
+import { getCategories, getBlocks } from '../../services/db';
 
 export default function ShopByCategory() {
-  const scrollRef = useRef(null);
+  const [categories, setCategories] = useState([]);
+  const [config, setConfig] = useState(null);
 
-  const scroll = (dir) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: dir * 180, behavior: 'smooth' });
-    }
-  };
+  useEffect(() => {
+    setCategories(getCategories());
+    setConfig(getBlocks().shopByCategory || { enabled: true, heading: 'Shop by Category', subtitle: 'Explore' });
+  }, []);
+
+  if (!config || !config.enabled) return null;
 
   return (
-    <section
-      className="w-full bg-[#FAF6F0] py-5"
-      id="shop-by-category"
-    >
+    <section className="w-full bg-[#F8F3EA] py-10 md:py-[60px] lg:py-20" id="shop-by-category">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section header */}
-        <div className="text-center mb-4">
-          <p className="text-[9px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-0.5">Explore</p>
-          <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#2D0B0C] leading-tight">
-            Shop by Category
+        <div className="text-center mb-10">
+          <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#C8922A] font-semibold block mb-1.5">
+            ✦ {config.subtitle || 'Explore'} ✦
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C] tracking-wide uppercase">
+            {config.heading || 'Shop by Category'}
           </h2>
-          <div className="mt-2 w-10 h-[1.5px] bg-[#D4A64A]/30 mx-auto" />
+          <div className="w-12 h-[2px] bg-[#D4A64A] mx-auto mt-3 mb-3" />
         </div>
 
-        {/* Carousel wrapper */}
-        <div className="relative">
-          {/* Left arrow */}
-          <button
-            onClick={() => scroll(-1)}
-            aria-label="Scroll left"
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-8 h-8 rounded-full border border-[#D4A64A]/40 bg-white items-center justify-center shadow-sm hover:bg-[#FAF6F0] transition-all"
-          >
-            <ChevronLeft className="w-3.5 h-3.5 text-[#2D0B0C]" />
-          </button>
-
-          {/* Scrollable row */}
-          <div
-            ref={scrollRef}
-            className="flex gap-8 sm:gap-12 overflow-x-auto scrollbar-none pb-2 md:justify-center"
-          >
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                to={cat.slug}
-                className="flex flex-col items-center gap-2 shrink-0 group"
-              >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-[3px] border-[#C8922A] group-hover:border-[#3E0F12] transition-all shadow-sm">
-                  <img
-                    src={cat.image}
-                    alt={cat.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#2D0B0C] group-hover:text-[#C8922A] transition-colors text-center">
-                  {cat.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          {/* Right arrow */}
-          <button
-            onClick={() => scroll(1)}
-            aria-label="Scroll right"
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-8 h-8 rounded-full border border-[#D4A64A]/40 bg-white items-center justify-center shadow-sm hover:bg-[#FAF6F0] transition-all"
-          >
-            <ChevronRight className="w-3.5 h-3.5 text-[#2D0B0C]" />
-          </button>
+        {/* Categories Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+          {categories.map((cat) => (
+            <CategoryCard key={cat.id} cat={cat} />
+          ))}
         </div>
+
       </div>
     </section>
+  );
+}
+
+function CategoryCard({ cat }) {
+  return (
+    <Link
+      to={cat.slug}
+      className="group flex flex-col justify-between bg-white border border-[#E5DFD5] hover:border-[#163728]/60 rounded-[16px] p-3 relative overflow-hidden transition-all duration-[250ms] ease-in-out hover:-translate-y-[6px] aspect-square"
+      style={{ aspectRatio: '1 / 1' }}
+    >
+      {/* Arched image container with texture bg */}
+      <div className="flex-1 w-full bg-[#FAF6F0] rounded-t-[100px] rounded-b-none flex items-center justify-center p-6 relative overflow-hidden min-h-0">
+        <img
+          src={cat.image}
+          alt={cat.name}
+          className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-[250ms] ease-in-out group-hover:scale-[1.03]"
+        />
+      </div>
+      
+      {/* Clean white info area */}
+      <div className="bg-white pt-3 pb-1 text-center shrink-0">
+        <span className="font-serif text-[13px] font-bold text-[#2D0B0C] group-hover:text-[#163728] transition-colors duration-[250ms] ease-in-out uppercase tracking-wider block">
+          {cat.name}
+        </span>
+      </div>
+    </Link>
   );
 }

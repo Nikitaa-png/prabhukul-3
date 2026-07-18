@@ -4,7 +4,7 @@ import heroBannerImg from '../../assets/images/WhatsApp Image 2026-07-14 at 02.1
 
 export default function Hero() {
   return (
-    <section id="hero-section" className="w-full bg-[#FAF6F0]">
+    <section id="hero-section" className="w-full bg-[#F8F3EA]">
 
       {/* ── DESKTOP (lg+) ─────────────────────────────────────────── */}
       <div className="hidden lg:block w-full relative">

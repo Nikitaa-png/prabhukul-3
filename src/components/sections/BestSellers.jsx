@@ -1,193 +1,196 @@
-import React, { useRef } from 'react';
-import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight, ArrowRight, Leaf, ShieldCheck, Flame, Truck, Award } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../../data/catalog';
-import { bestSellerIds } from '../../data/homeData';
-import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
+import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { getBlocks } from '../../services/db';
 
-const trustBadges = [
-  { icon: Leaf,        title: '100% Pure',        sub: 'No Additives' },
-  { icon: ShieldCheck, title: 'Premium Quality',   sub: 'Finest Ingredients' },
-  { icon: Flame,       title: 'Strong Aroma',      sub: 'Great Taste' },
-  { icon: Truck,       title: 'Pan India Delivery', sub: 'Fast & Reliable' },
-  { icon: Award,       title: 'Trusted Since 1985', sub: 'Pure & Authentic' },
-];
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 1, 0.5, 1]
+    }
+  }
+};
+
+const imageCompositionVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const singleImageVariants = {
+  hidden: { opacity: 0, scale: 0.96, y: 15 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.25, 1, 0.5, 1]
+    }
+  }
+};
 
 export default function BestSellers() {
-  const scrollRef = useRef(null);
-  const items = bestSellerIds.map((id) => products.find((p) => p.id === id)).filter(Boolean);
+  const [config, setConfig] = useState(null);
 
-  const scroll = (dir) => {
-    if (scrollRef.current) scrollRef.current.scrollBy({ left: dir * 230, behavior: 'smooth' });
-  };
+  useEffect(() => {
+    setConfig(getBlocks().bestSellers || { enabled: true, heading: 'Best Sellers', subtitle: 'Our Bestsellers' });
+  }, []);
+
+  if (!config || !config.enabled) return null;
 
   return (
-    <section className="w-full py-16" id="best-sellers" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <motion.section 
+      className="w-full bg-[#FFFFFF] py-10 md:py-[60px] lg:py-20 relative overflow-hidden border-b border-[#E5DFD5]/30"
+      id="best-sellers"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      variants={containerVariants}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Header row */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <div className="text-center sm:text-left">
-            {/* Ornamental label */}
-            <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
-              <div className="w-6 h-[1px] bg-[#D4A64A]" />
-              <span className="text-[10px] uppercase tracking-[0.25em] text-[#C8922A] font-semibold border border-[#D4A64A]/50 px-3 py-0.5">
-                ✦ Our Bestsellers
-              </span>
-              <div className="w-6 h-[1px] bg-[#D4A64A]" />
-            </div>
-            <h2
-              className="font-serif text-4xl sm:text-5xl font-bold text-[#163728] tracking-wide uppercase"
-              style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          {/* Left Content (45% on desktop -> col-span-5) */}
+          <motion.div 
+            className="lg:col-span-5 space-y-6 text-left"
+            variants={containerVariants}
+          >
+            <motion.span 
+              className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#C8922A] font-bold block"
+              variants={fadeUpVariants}
             >
-              Best Sellers
-            </h2>
-            <div className="flex justify-center sm:justify-start mt-2">
-              <span className="text-[#D4A64A] text-lg">✦</span>
-            </div>
-            <p className="font-sans text-[13px] text-[#5C534E] mt-2">
-              Handpicked favorites loved by our customers
-            </p>
-          </div>
+              AUTHENTIC HATHRAS HING • SINCE 1970
+            </motion.span>
+            
+            <motion.h2 
+              className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2D0B0C] leading-[1.15] uppercase tracking-wide"
+              variants={fadeUpVariants}
+            >
+              A Legacy of Pure Hing
+            </motion.h2>
 
-          <Link
-            to="/shop"
-            className="self-center sm:self-end inline-flex items-center gap-2 border border-[#3E0F12] text-[#3E0F12] text-[11px] font-semibold tracking-widest uppercase px-5 py-2.5 hover:bg-[#3E0F12] hover:text-white transition-all shrink-0"
-          >
-            View All Products <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        {/* Carousel */}
-        <div className="relative">
-          {/* Left arrow */}
-          <button
-            onClick={() => scroll(-1)}
-            aria-label="Previous"
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-10 w-10 h-10 rounded-full bg-white border border-[#D4A64A]/40 items-center justify-center shadow hover:bg-[#FAF6F0] transition-all"
-          >
-            <ChevronLeft className="w-5 h-5 text-[#2D0B0C]" />
-          </button>
-
-          <div
-            ref={scrollRef}
-            className="flex gap-5 overflow-x-auto scrollbar-none pb-2"
-          >
-            {items.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          {/* Right arrow */}
-          <button
-            onClick={() => scroll(1)}
-            aria-label="Next"
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-10 w-10 h-10 rounded-full bg-white border border-[#D4A64A]/40 items-center justify-center shadow hover:bg-[#FAF6F0] transition-all"
-          >
-            <ChevronRight className="w-5 h-5 text-[#2D0B0C]" />
-          </button>
-        </div>
-
-        {/* Trust strip */}
-        <div className="mt-12 border border-[#E6B747]/40 bg-[#3E0F12] rounded-sm px-4 py-5">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {trustBadges.map(({ icon: Icon, title, sub }) => (
-              <div key={title} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-[#E6B747]/40 flex items-center justify-center shrink-0">
-                  <Icon className="w-4.5 h-4.5 text-[#E6B747]" strokeWidth={1.6} />
-                </div>
-                <div>
-                  <p className="text-[12px] font-bold text-white leading-tight">{title}</p>
-                  <p className="text-[10px] text-gray-300">{sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-function ProductCard({ product }) {
-  const stars = Math.round(product.rating);
-
-  return (
-    <div className="group flex flex-col bg-white border border-[#E8DDD0] hover:shadow-lg transition-all duration-300 shrink-0 w-[190px] sm:w-[210px]">
-      {/* Image area */}
-      <div className="h-[320px] w-full flex items-center justify-center p-4 overflow-visible bg-[#FAF6F0] relative">
-        {/* BEST SELLER ribbon */}
-        <div className="absolute top-0 left-0 z-10 bg-[#3E0F12] text-white text-[8px] font-bold tracking-widest uppercase px-2 py-3 leading-tight text-center"
-          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-        >
-          BEST SELLER
-        </div>
-
-        <Link to={`/product/${product.id}`} className="w-full h-full flex items-center justify-center">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="max-w-full max-h-full w-auto h-auto object-contain"
-          />
-        </Link>
-
-        {/* Wishlist */}
-        <button
-          aria-label="Add to wishlist"
-          className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white border border-[#E8DDD0] flex items-center justify-center hover:border-[#3E0F12] transition-all z-10"
-        >
-          <Heart className="w-3.5 h-3.5 text-[#5C534E]" />
-        </button>
-      </div>
-
-      {/* Info */}
-      <div className="flex flex-col flex-1 p-4 gap-2">
-        <Link to={`/product/${product.id}`}>
-          <p className="font-sans text-[13px] font-semibold text-[#2D0B0C] leading-snug line-clamp-2 hover:text-[#3E0F12] transition-colors">
-            {product.title}
-          </p>
-        </Link>
-
-        {/* Weight/variant from title */}
-        <p className="text-[11px] text-[#9E9087]">
-          {product.title.match(/\d+\s*[gG]m?/)?.[0] ?? 'Standard'}
-        </p>
-
-        {/* Stars */}
-        <div className="flex items-center gap-1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              key={i}
-              className={`w-3 h-3 ${i < stars ? 'text-[#E6B747] fill-[#E6B747]' : 'text-gray-300 fill-gray-200'}`}
+            <motion.div 
+              className="w-16 h-[2px] bg-[#D4A64A]"
+              variants={fadeUpVariants}
             />
-          ))}
-          <span className="text-[10px] text-[#5C534E] ml-1">({product.rating})</span>
+
+            <motion.p 
+              className="font-sans text-xs sm:text-sm text-[#5C534E] leading-relaxed"
+              variants={fadeUpVariants}
+            >
+              For generations, Prabhukul has been trusted for delivering authentic Hathras Hing, crafted with uncompromising quality and traditional expertise. Every product reflects our commitment to purity, rich aroma, and timeless flavour.
+            </motion.p>
+
+            <motion.div 
+              className="pt-2"
+              variants={fadeUpVariants}
+            >
+              <Link
+                to="/shop"
+                className="inline-flex items-center gap-2 border border-[#3E0F12] text-[#3E0F12] text-[11px] font-semibold tracking-widest uppercase px-6 py-3 hover:bg-[#3E0F12] hover:text-white transition-all duration-[250ms] rounded-sm shadow-sm"
+              >
+                Explore Products <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Image Composition (55% on desktop -> col-span-7) */}
+          <motion.div 
+            className="lg:col-span-7 flex justify-center items-center w-full"
+            variants={imageCompositionVariants}
+          >
+            {/* Aspect container to maintain responsive proportions */}
+            <div className="relative w-full aspect-[1.45] max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] min-h-[260px] sm:min-h-[340px]">
+              
+              {/* 1. Background/Lifestyle image (bottom-left, z-0) */}
+              <motion.div 
+                className="absolute left-0 bottom-0 w-[42%] h-[54%] rounded-[12px] overflow-hidden border border-[#E5DFD5] shadow-sm z-0 group"
+                variants={singleImageVariants}
+                whileHover={{ y: -3, scale: 1.02, transition: { duration: 0.25 } }}
+              >
+                <img 
+                  src="/images/prabhukuldana,powder/prabh/IMG-20260718-WA0028.jpg" 
+                  alt="Traditional Sourcing Scent"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              </motion.div>
+
+              {/* 2. Tall Featured Product Box (center-left, z-20) */}
+              <motion.div 
+                className="absolute left-[18%] top-[4%] w-[44%] h-[68%] bg-white border border-[#E5DFD5] rounded-[14px] p-4 sm:p-5 shadow-md z-20 group flex items-center justify-center cursor-pointer"
+                variants={singleImageVariants}
+                whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.25 } }}
+              >
+                <Link to="/product/14" className="w-full h-full flex items-center justify-center">
+                  <img 
+                    src="/images/prabhukuldana,powder/file_00000000148c8206810de4683fa18557.png" 
+                    alt="Prabhukul Prime Compound Hing"
+                    className="max-w-full max-h-full w-auto h-auto object-contain p-2 transition-transform duration-300 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </Link>
+              </motion.div>
+
+              {/* 3. Supporting Product Box slightly behind (top-right, z-10) */}
+              <motion.div 
+                className="absolute right-[15%] top-0 w-[32%] h-[42%] bg-white border border-[#E5DFD5] rounded-[14px] p-3 shadow-sm z-10 group flex items-center justify-center cursor-pointer"
+                variants={singleImageVariants}
+                whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.25 } }}
+              >
+                <Link to="/product/8" className="w-full h-full flex items-center justify-center">
+                  <img 
+                    src="/images/prabhukuldana,powder/file_0000000066a082098e62ae6fa1caad6f.png" 
+                    alt="Prabhukul Choice Compound Hing"
+                    className="max-w-full max-h-full w-auto h-auto object-contain p-2 transition-transform duration-300 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </Link>
+              </motion.div>
+
+              {/* 4. Medium Overlapping Product Box (bottom-right, z-30) */}
+              <motion.div 
+                className="absolute right-0 bottom-[4%] w-[38%] h-[50%] bg-white border border-[#E5DFD5] rounded-[14px] p-3 sm:p-4 shadow-lg z-30 group flex items-center justify-center cursor-pointer"
+                variants={singleImageVariants}
+                whileHover={{ y: -5, scale: 1.02, transition: { duration: 0.25 } }}
+              >
+                <Link to="/product/1" className="w-full h-full flex items-center justify-center">
+                  <img 
+                    src="/images/prabhukuldana,powder/file_0000000002fc81fbb4d5cebe0b7e1ddf.png" 
+                    alt="Pure Hing Matki"
+                    className="max-w-full max-h-full w-auto h-auto object-contain p-2 transition-transform duration-300 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </Link>
+              </motion.div>
+
+            </div>
+          </motion.div>
+
         </div>
-
-        {/* Price */}
-        <div className="flex items-center gap-2 mt-1">
-          <span className="text-[16px] font-bold text-[#2D0B0C]">₹{product.price}.00</span>
-          {product.originalPrice && (
-            <span className="text-[11px] text-[#9E9087] line-through">₹{product.originalPrice}.00</span>
-          )}
-        </div>
-
-        {/* Add to Cart */}
-        <button className="w-full flex items-center justify-center gap-2 bg-[#163728] text-white text-[10px] font-bold tracking-widest uppercase py-2.5 hover:bg-[#0C1C12] transition-colors mt-1">
-          <ShoppingCart className="w-3.5 h-3.5" />
-          Add to Cart
-        </button>
-
-        {/* View Details */}
-        <Link
-          to={`/product/${product.id}`}
-          className="w-full flex items-center justify-center gap-1.5 text-[#3E0F12] text-[10px] font-semibold tracking-widest uppercase py-1.5 hover:text-[#C8922A] transition-colors"
-        >
-          View Details <ArrowRight className="w-3 h-3" />
-        </Link>
       </div>
-    </div>
+    </motion.section>
   );
 }
-

@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Star, ArrowRight } from 'lucide-react';
-import { products } from '../../data/catalog';
+import { getProducts, getBlocks } from '../../services/db';
 
 // Category pill SVG icons (line-art style matching reference)
 const CategoryIcons = {
@@ -86,10 +86,20 @@ const badgeMap = {
 export default function PromoBannerGrid() {
   const catRef = useRef(null);
   const scrollRef = useRef(null);
+  const [collectionProducts, setCollectionProducts] = useState([]);
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    const products = getProducts();
+    const loaded = collectionIds.map((id) => products.find((p) => p.id === Number(id))).filter(Boolean);
+    setCollectionProducts(loaded.filter(p => p.visible !== false));
+    setConfig(getBlocks().ourCollection || { enabled: true, heading: 'Our Collection', subtitle: 'Explore Our Finest' });
+  }, []);
+
   const scrollCat = (dir) => catRef.current?.scrollBy({ left: dir * 200, behavior: 'smooth' });
   const scroll = (dir) => scrollRef.current?.scrollBy({ left: dir * 270, behavior: 'smooth' });
 
-  const collectionProducts = collectionIds.map((id) => products.find((p) => p.id === id)).filter(Boolean);
+  if (!config || !config.enabled) return null;
 
   return (
     <section className="w-full bg-[#F5EDE0] py-16" id="promo-banners">

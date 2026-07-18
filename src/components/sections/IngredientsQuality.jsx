@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { qualityPoints } from '../../data/homeData';
+import { getBlocks, getHomeData } from '../../services/db';
 import qualityBannerImg from '../../assets/images/ingredients-composite.png';
 
 export default function IngredientsQuality() {
-  // Show only 2 quality points on the Home page preview
-  const teaserPoints = qualityPoints.slice(0, 2);
+  const [config, setConfig] = useState(null);
+  const [teaserPoints, setTeaserPoints] = useState([]);
+
+  useEffect(() => {
+    const blocks = getBlocks();
+    const data = getHomeData();
+    setConfig(blocks.ingredientsQuality || { enabled: true, heading: 'Ingredients & Quality', subtitle: 'Purity First' });
+    setTeaserPoints((data.qualityPoints || []).slice(0, 2));
+  }, []);
+
+  if (!config || !config.enabled) return null;
 
   return (
     <section className="w-full bg-[#F5EDE0] py-16" id="ingredients-quality">
@@ -17,10 +26,10 @@ export default function IngredientsQuality() {
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
               <div className="w-6 h-[1px] bg-[#D4A64A]" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#C8922A] font-medium">Purity First</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#C8922A] font-medium">{config.subtitle || 'Purity First'}</span>
               <div className="w-6 h-[1px] bg-[#D4A64A]" />
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C]">Ingredients & Quality</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C]">{config.heading || 'Ingredients & Quality'}</h2>
           </div>
 
           <Link

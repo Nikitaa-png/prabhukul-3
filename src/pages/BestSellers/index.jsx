@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SEO from '../../components/common/SEO';
-import { products } from '../../data/catalog';
-import { bestSellerIds } from '../../data/homeData';
+import { getProducts, getBestSellerIds } from '../../services/db';
 import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 import { Star, Heart, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function BestSellersPage() {
-  // Load all best seller products
-  const items = bestSellerIds.map((id) => products.find((p) => p.id === id)).filter(Boolean);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const products = getProducts();
+    const ids = getBestSellerIds();
+    const loaded = ids.map((id) => products.find((p) => p.id === Number(id))).filter(Boolean);
+    setItems(loaded.filter(p => p.visible !== false));
+  }, []);
 
   return (
     <>

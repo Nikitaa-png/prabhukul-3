@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import { footerData, contactInfo } from '../../data/homeData';
+import { getFooterSettings, getContactInfo } from '../../services/db';
 import logoImg from '../../assets/images/logo.png';
 
 // Simple inline SVG social icons (lucide-react doesn't include brand icons)
@@ -32,7 +32,17 @@ const SocialIcons = {
 };
 
 export default function Footer() {
+  const [footerData, setFooterData] = useState(null);
+  const [contactInfo, setContactInfo] = useState(null);
+
+  useEffect(() => {
+    setFooterData(getFooterSettings());
+    setContactInfo(getContactInfo());
+  }, []);
+
   const year = new Date().getFullYear();
+
+  if (!footerData || !contactInfo) return null;
 
   return (
     <footer className="w-full bg-[#1A0608] text-gray-300 border-t-2 border-[#E6B747]/40" id="footer">

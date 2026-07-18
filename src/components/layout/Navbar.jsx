@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, ShoppingBag, User, Heart, Search, Leaf, Sparkles } from 'lucide-react';
 import logoImg from '../../assets/images/logo.png';
+import { getBlocks } from '../../services/db';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,11 @@ export default function Navbar() {
   ];
 
   const allNavigation = [...primaryNavigation, ...secondaryNavigation];
+  const [annConfig, setAnnConfig] = useState(null);
+
+  useEffect(() => {
+    setAnnConfig(getBlocks().announcementBar || { enabled: true, text: 'Authentic Hathras Hing Since 1985' });
+  }, []);
 
   return (
     <div className="w-full flex flex-col z-50 bg-white">
@@ -31,10 +37,12 @@ export default function Navbar() {
       <div className="w-full bg-[#3E0F12] text-[#FAF6F0] py-2 text-[10px] tracking-widest font-semibold border-b border-[#D4A64A]/25">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-2">
-            <div className="flex items-center space-x-2">
-              <Leaf className="w-3.5 h-3.5 text-[#E6B747] shrink-0" />
-              <span className="uppercase text-gray-200">Authentic Hathras Hing Since 1985</span>
-            </div>
+            {annConfig?.enabled !== false && (
+              <div className="flex items-center space-x-2">
+                <Leaf className="w-3.5 h-3.5 text-[#E6B747] shrink-0" />
+                <span className="uppercase text-gray-200">{annConfig?.text || 'Authentic Hathras Hing Since 1985'}</span>
+              </div>
+            )}
             
             {/* Secondary navigation on desktop */}
             <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">

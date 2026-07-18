@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SEO from '../../components/common/SEO';
-import { faqs } from '../../data/homeData';
+import { getFAQs } from '../../services/db';
 import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
 
 export default function FAQ() {
+  const [faqs, setFaqs] = useState([]);
   const [openIndex, setOpenIndex] = useState(null);
+
+  useEffect(() => {
+    setFaqs(getFAQs());
+  }, []);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);

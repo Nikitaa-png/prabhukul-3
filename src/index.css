@@ -16,3 +16,28 @@ body,
 body {
   @apply antialiased text-gray-900 bg-[#FAF6F0] font-sans;
 }
+
+/* Global Heading Typography System standardizing to Cormorant Garamond and brand color #2D0B0C */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif text-[#2D0B0C];
+}
+
+/* Global Spacing System for Content Sections (40px Mobile, 60px Tablet, 80px Desktop) */
+section:not(#hero-section):not(#trust-stats-strip) {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+@media (min-width: 768px) {
+  section:not(#hero-section):not(#trust-stats-strip) {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  section:not(#hero-section):not(#trust-stats-strip) {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+}

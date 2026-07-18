@@ -17,6 +17,21 @@ import Privacy from '../pages/Privacy';
 import Terms from '../pages/Privacy/Terms';
 import NotFound from '../pages/NotFound';
 
+import AdminLayout from '../layouts/AdminLayout';
+import AdminLogin from '../pages/Admin/Login';
+import AdminDashboard from '../pages/Admin/Dashboard';
+import AdminHomepage from '../pages/Admin/Homepage';
+import AdminProducts from '../pages/Admin/Products';
+import AdminCategories from '../pages/Admin/Categories';
+import AdminBanners from '../pages/Admin/Banners';
+import AdminBlogs from '../pages/Admin/Blogs';
+import AdminTestimonials from '../pages/Admin/Testimonials';
+import AdminFAQs from '../pages/Admin/FAQs';
+import AdminMedia from '../pages/Admin/Media';
+import AdminContact from '../pages/Admin/Contact';
+import AdminFooter from '../pages/Admin/Footer';
+import AdminSettings from '../pages/Admin/Settings';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -89,6 +104,68 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFound />,
+      },
+    ],
+  },
+  {
+    path: '/admin/login',
+    element: <AdminLogin />,
+  },
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: '',
+        element: <AdminDashboard />,
+      },
+      {
+        path: 'dashboard',
+        element: <AdminDashboard />,
+      },
+      {
+        path: 'homepage',
+        element: <AdminHomepage />,
+      },
+      {
+        path: 'products',
+        element: <AdminProducts />,
+      },
+      {
+        path: 'categories',
+        element: <AdminCategories />,
+      },
+      {
+        path: 'banners',
+        element: <AdminBanners />,
+      },
+      {
+        path: 'blogs',
+        element: <AdminBlogs />,
+      },
+      {
+        path: 'testimonials',
+        element: <AdminTestimonials />,
+      },
+      {
+        path: 'faqs',
+        element: <AdminFAQs />,
+      },
+      {
+        path: 'media',
+        element: <AdminMedia />,
+      },
+      {
+        path: 'contact',
+        element: <AdminContact />,
+      },
+      {
+        path: 'footer',
+        element: <AdminFooter />,
+      },
+      {
+        path: 'settings',
+        element: <AdminSettings />,
       },
     ],
   },

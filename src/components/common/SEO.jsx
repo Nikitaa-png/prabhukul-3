@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { getAdminSettings } from '../../services/db';
 
 /**
  * SEO component updates the document title and meta description dynamically.
@@ -10,7 +11,9 @@ import { useEffect } from 'react';
 export default function SEO({ title, description }) {
   useEffect(() => {
     // Dynamic page title
-    document.title = title ? `${title} | Prabhukul` : 'Prabhukul | Pure, Premium Wellness';
+    const settings = getAdminSettings();
+    const prefix = settings.siteTitle || 'Prabhukul';
+    document.title = title ? `${title} | ${prefix}` : `${prefix} | Pure, Premium Wellness`;
     
     // Dynamic description tag
     let metaDescription = document.querySelector('meta[name="description"]');

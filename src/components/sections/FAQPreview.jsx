@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { faqs } from '../../data/homeData';
+import { getFAQs, getBlocks } from '../../services/db';
 
 export default function FAQPreview() {
   const [open, setOpen] = useState(null);
-  const visible = faqs.slice(0, 3);
+  const [visible, setVisible] = useState([]);
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    setVisible(getFAQs().slice(0, 3));
+    setConfig(getBlocks().faqs || { enabled: true, heading: 'Frequently Asked Questions', subtitle: 'Got Questions?' });
+  }, []);
+
+  if (!config || !config.enabled) return null;
 
   return (
     <section className="w-full bg-[#F5EDE0] py-14 border-t border-[#D4A64A]/25" id="faq-preview">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Got Questions?</p>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C]">Frequently Asked Questions</h2>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">{config.subtitle || 'Got Questions?'}</p>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C]">{config.heading || 'Frequently Asked Questions'}</h2>
           <div className="mt-3 w-12 h-[2px]  mx-auto" />
         </div>
 

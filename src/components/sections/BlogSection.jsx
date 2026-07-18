@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock } from 'lucide-react';
-import { blogs } from '../../data/homeData';
+import { getBlogs, getBlocks } from '../../services/db';
 import bgImg from '../../assets/images/WhatsApp Image 2026-07-14 at 03.25.12.jpeg';
 
 export default function BlogSection() {
-  const featured = blogs.find((b) => b.featured);
-  const supporting = blogs.filter((b) => !b.featured).slice(0, 2);
+  const [featured, setFeatured] = useState(null);
+  const [supporting, setSupporting] = useState([]);
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    const all = getBlogs().filter(b => b.published !== false);
+    const feat = all.find(b => b.featured) || all[0];
+    const rest = all.filter(b => b.id !== (feat ? feat.id : null)).slice(0, 2);
+    setFeatured(feat);
+    setSupporting(rest);
+    setConfig(getBlocks().blogs || { enabled: true, heading: 'From Our Blog', subtitle: 'Knowledge Hub' });
+  }, []);
+
+  if (!config || !config.enabled) return null;
 
   return (
     <section className="w-full py-14" id="blog-section" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">Knowledge Hub</p>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C]">From Our Blog</h2>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-[#C8922A] font-medium mb-2">{config.subtitle || 'Knowledge Hub'}</p>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C]">{config.heading || 'From Our Blog'}</h2>
           <div className="mt-3 w-12 h-[2px]  mx-auto" />
         </div>
 

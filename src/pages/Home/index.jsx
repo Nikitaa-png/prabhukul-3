@@ -1,10 +1,13 @@
+import React, { useState, useEffect } from 'react';
 import SEO from '../../components/common/SEO';
 import Hero from '../../components/sections/Hero';
 import TrustStatsStrip from '../../components/sections/TrustStatsStrip';
 import ShopByCategory from '../../components/sections/ShopByCategory';
+import PopularHings from '../../components/sections/PopularHings';
 import BestSellers from '../../components/sections/BestSellers';
 import BrandStory from '../../components/sections/BrandStory';
 import WhyChoose from '../../components/sections/WhyChoose';
+import ProductReviews from '../../components/sections/ProductReviews';
 import HingBenefits from '../../components/sections/HingBenefits';
 import IngredientsQuality from '../../components/sections/IngredientsQuality';
 import ManufacturingProcess from '../../components/sections/ManufacturingProcess';
@@ -15,64 +18,81 @@ import BlogSection from '../../components/sections/BlogSection';
 import FinalCTA from '../../components/sections/FinalCTA';
 import ContactPreview from '../../components/sections/ContactPreview';
 import Newsletter from '../../components/sections/Newsletter';
+import { getBlocks, getAdminSettings } from '../../services/db';
 
 export default function Home() {
+  const [blocks, setBlocks] = useState(null);
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    setBlocks(getBlocks());
+    setSettings(getAdminSettings());
+  }, []);
+
+  if (!blocks) return null;
+
   return (
     <>
       <SEO
-        title="Pure Taste, Timeless Tradition"
+        title={settings?.siteTitle || "Pure Taste, Timeless Tradition"}
         description="Experience premium and authentic asafoetida and spices from Prabhukul — rooted in Hathras, trusted across India."
       />
 
       {/* 1. Hero — APPROVED, DO NOT MODIFY */}
-      <Hero />
+      {blocks.hero?.enabled && <Hero />}
 
       {/* 2. Trust Statistics Strip */}
-      <TrustStatsStrip />
+      {blocks.trustStatsStrip?.enabled && <TrustStatsStrip />}
 
       {/* 3. Shop by Category */}
-      <ShopByCategory />
+      {blocks.shopByCategory?.enabled && <ShopByCategory />}
+
+      {/* Popular Hings */}
+      <PopularHings />
 
       {/* 4. Best Sellers */}
-      <BestSellers />
+      {blocks.bestSellers?.enabled && <BestSellers />}
 
       {/* 6. Brand Story */}
-      <BrandStory />
+      {blocks.brandStory?.enabled && <BrandStory />}
 
       {/* 7. Why Choose Prabhukul */}
-      <WhyChoose />
+      {blocks.whyChoose?.enabled && <WhyChoose />}
+
+      {/* Product Reviews */}
+      <ProductReviews />
 
       {/* 8. Benefits of Hing */}
-      <HingBenefits />
+      {blocks.hingBenefits?.enabled && <HingBenefits />}
 
       {/* 9. Ingredients & Quality */}
-      <IngredientsQuality />
+      {blocks.ingredientsQuality?.enabled && <IngredientsQuality />}
 
       {/* 10. Manufacturing Process */}
-      <ManufacturingProcess />
+      {blocks.manufacturingProcess?.enabled && <ManufacturingProcess />}
 
       {/* 11. Recipe Inspiration — removed */}
 
       {/* 12. Customer Testimonials */}
-      <Testimonials />
+      {blocks.testimonials?.enabled && <Testimonials />}
 
       {/* 13. Certifications & Trust */}
-      <Certifications />
+      {blocks.certifications?.enabled && <Certifications />}
 
       {/* 14. FAQ Preview */}
-      <FAQPreview />
+      {blocks.faqs?.enabled && <FAQPreview />}
 
       {/* 15. Blog / Knowledge */}
-      <BlogSection />
+      {blocks.blogs?.enabled && <BlogSection />}
 
       {/* 16. Final CTA */}
       <FinalCTA />
 
       {/* 17. Contact Preview */}
-      <ContactPreview />
+      {blocks.contactPreview?.enabled && <ContactPreview />}
 
       {/* 18. Newsletter */}
-      <Newsletter />
+      {blocks.newsletter?.enabled && <Newsletter />}
     </>
   );
 }
