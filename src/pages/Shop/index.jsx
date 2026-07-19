@@ -58,14 +58,14 @@ export default function Shop() {
       {/* Shop Page Banner */}
       <div className="shop-banner-container">
         <img 
-          src="/images/prabhukuldana,powder/prabhukulposter/file_0000000085647207a9146014fbbad819.png" 
-          alt="The Secret Behind Every Delicious Meal - Prabhukul Hing Compound" 
+          src="/images/prabhukuldana,powder/Android/media/com.openai.chatgpt/file_000000002c18820b8b41f2a90dfcc7a0.png" 
+          alt="One pinch. Unmatched Aroma. - Prabhukul Hing" 
           className="shop-banner-img" 
         />
       </div>
 
       {/* Compact Title & Breadcrumb */}
-      <div className="w-full bg-[#FAF6F0] pt-4 pb-1.5 md:pt-6 md:pb-2.5 lg:pt-8 lg:pb-3">
+      <div className="w-full bg-[#FAF6F0] pt-3 pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#2D0B0C] tracking-wide uppercase">
             Shop
@@ -79,7 +79,7 @@ export default function Shop() {
       </div>
 
       {/* Main Container */}
-      <div className="w-full bg-[#FAF6F0] pb-10 pt-2 md:pt-3 lg:pt-4 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
+      <div className="w-full bg-[#FAF6F0] pb-10 pt-3 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative">
           
           {/* Desktop Filter Sidebar (Sticky) */}
