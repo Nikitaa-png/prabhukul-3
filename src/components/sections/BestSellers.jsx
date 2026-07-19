@@ -63,7 +63,7 @@ export default function BestSellers() {
 
   return (
     <motion.section 
-      className="w-full bg-[#FFFFFF] py-10 md:py-[60px] lg:py-20 relative overflow-hidden border-b border-[#E5DFD5]/30"
+      className="w-full bg-[#F8F3EA] py-10 md:py-[60px] lg:py-20 relative overflow-hidden border-b border-[#E5DFD5]/30"
       id="best-sellers"
       initial="hidden"
       whileInView="visible"

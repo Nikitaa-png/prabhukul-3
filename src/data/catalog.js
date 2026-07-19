@@ -9,7 +9,7 @@ export const products = [
     category: 'Hing',
     description: 'Authentic Hathras asafoetida packed in a traditional miniature clay matki for preserving freshness and aroma.',
     rating: 4.9,
-    image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing24-600x744.jpg',
+    image: '/images/prabhukuldana,powder/file_0000000002fc81fbb4d5cebe0b7e1ddf.png',
     isFeatured: true
   },
   {
@@ -75,7 +75,7 @@ export const products = [
     category: 'Hing',
     description: 'An aromatic compounding of pure Hathras hing for daily culinary enhancements.',
     rating: 4.8,
-    image: 'https://prabhukul.com/wp-content/uploads/2023/05/Hing13-600x744.jpg'
+    image: '/images/prabhukuldana,powder/file_0000000066a082098e62ae6fa1caad6f.png'
   },
   {
     id: 9,
@@ -93,7 +93,7 @@ export const products = [
     category: 'Hing',
     description: 'An essential kitchen hing offering standard purity and robust Vedic flavors.',
     rating: 4.8,
-    image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing39-600x744.jpg'
+    image: '/images/prabhukuldana,powder/file_000000006e6082069885e5a8758fd1d7.png'
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ export const products = [
     category: 'Hing',
     description: 'Our highest tier of compounded dela hing, packing immense potency. For connoisseurs of traditional spice.',
     rating: 5.0,
-    image: 'https://prabhukul.com/wp-content/uploads/2023/05/WhatsApp-Image-2026-01-05-at-12.37.01-600x744.jpeg',
+    image: '/images/prabhukuldana,powder/file_00000000148c8206810de4683fa18557.png',
     isFeatured: true
   },
   {
@@ -139,7 +139,7 @@ export const products = [
     category: 'Hing Dana',
     description: 'Concentrated granules of raw, unrefined asafoetida resin for absolute clinical purity.',
     rating: 4.9,
-    image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing24-600x744.jpg'
+    image: '/images/prabhukuldana,powder/file_00000000f3a082069028804953d13c42.png'
   },
   {
     id: 16,
@@ -157,7 +157,7 @@ export const products = [
     category: 'Hing',
     description: 'Highly aromatic yellow hing powder, crafted to enhance delicate broths and dhals.',
     rating: 4.7,
-    image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing36-600x744.jpg'
+    image: '/images/prabhukuldana,powder/file_00000000ccf8820994a7f2a94292aeda.png'
   },
   {
     id: 18,
@@ -166,7 +166,7 @@ export const products = [
     category: 'Hing',
     description: 'The larger registry size of our highly aromatic yellow hing powder.',
     rating: 4.8,
-    image: 'https://prabhukul.com/wp-content/uploads/2022/10/Hing20-600x744.jpg'
+    image: '/images/prabhukuldana,powder/file_00000000da10820987f06d2e8ae8f8d0.png'
   },
   {
     id: 19,

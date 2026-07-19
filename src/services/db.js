@@ -10,7 +10,20 @@ const STORAGE_KEYS = {
 
 // Initialize localStorage with initial data if not already set
 export function initDB() {
-  if (!localStorage.getItem(STORAGE_KEYS.PRODUCTS)) {
+  const currentProducts = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
+  let needsReset = false;
+  if (currentProducts) {
+    try {
+      const parsed = JSON.parse(currentProducts);
+      const p1 = parsed.find(p => p.id === 1);
+      if (p1 && p1.image.startsWith('http')) {
+        needsReset = true;
+      }
+    } catch (e) {
+      needsReset = true;
+    }
+  }
+  if (!currentProducts || needsReset) {
     localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(initialProducts));
   }
   

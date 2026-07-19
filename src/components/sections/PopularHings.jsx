@@ -160,10 +160,10 @@ function ProductCard({ product }) {
 
   return (
     <div 
-      className="group flex flex-col justify-between bg-white border border-[#E5DFD5] hover:border-[#163728] rounded-[14px] overflow-hidden transition-all duration-[220ms] ease-in-out hover:-translate-y-[5px] hover:shadow-md h-full relative"
+      className="group flex flex-col justify-between bg-white border border-[#E5DFD5] hover:border-[#163728]/80 hover:-translate-y-1 hover:shadow-lg rounded-[14px] overflow-hidden transition-all duration-[220ms] ease-in-out h-full relative"
     >
       {/* Badges container */}
-      <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+      <div className="absolute top-5 left-5 z-10 flex flex-col gap-1.5">
         {product.isFeatured && (
           <span className="bg-[#163728] text-white text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-[4px] border border-[#163728]/10 shadow-sm">
             Featured
@@ -179,62 +179,68 @@ function ProductCard({ product }) {
       {/* Wishlist Button */}
       <button
         aria-label={`Add ${product.title} to wishlist`}
-        className="absolute top-3 right-3 w-7.5 h-7.5 rounded-full bg-white/95 hover:bg-white border border-[#E5DFD5] hover:border-[#163728]/60 flex items-center justify-center transition-all z-10 shadow-sm hover:scale-105 active:scale-95"
+        className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/95 hover:bg-white border border-[#E5DFD5] hover:border-[#163728]/60 flex items-center justify-center transition-all z-10 shadow-sm hover:scale-105 active:scale-95"
       >
         <Heart className="w-3.5 h-3.5 text-[#5C534E] hover:text-[#3E0F12]" />
       </button>
 
-      {/* Image container with light cream background */}
-      <div className="aspect-square w-full bg-[#FAF6F0] p-4 flex items-center justify-center relative overflow-hidden shrink-0">
+      {/* Image container/panel with soft cream background */}
+      <div className="w-[calc(100%-32px)] aspect-square bg-[#FAF6F0] rounded-[10px] overflow-hidden relative flex items-center justify-center mt-4 mx-4 shrink-0">
         <Link to={`/product/${product.id}`} className="w-full h-full flex items-center justify-center">
           <img
             src={product.image}
             alt={product.title}
-            className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-[220ms] ease-in-out group-hover:scale-[1.02]"
+            className="w-full h-full object-contain transition-transform duration-[220ms] ease-in-out group-hover:scale-[1.02]"
+            style={{
+              padding: product.id === 1 ? '16px' : '28px'
+            }}
             loading="lazy"
           />
         </Link>
       </div>
 
       {/* Card Info area */}
-      <div className="bg-white p-4 flex flex-col gap-1 flex-1 border-t border-[#E5DFD5]/40 text-left">
-        <Link to={`/product/${product.id}`}>
-          <h3 className="font-serif text-[14px] font-bold text-[#2D0B0C] group-hover:text-[#163728] transition-colors duration-[220ms] ease-in-out line-clamp-1">
-            {product.title}
-          </h3>
-        </Link>
-        
-        <p className="font-sans text-[11px] text-[#5C534E] leading-relaxed line-clamp-2 mt-0.5 min-h-[32px]">
-          {product.description}
-        </p>
+      <div className="bg-white p-5 flex flex-col flex-grow justify-between text-left gap-3">
+        <div className="space-y-2">
+          <Link to={`/product/${product.id}`}>
+            <h3 className="font-serif text-[15px] font-bold text-[#2D0B0C] leading-snug group-hover:text-[#163728] transition-colors duration-[220ms] ease-in-out line-clamp-2 min-h-[44px]">
+              {product.title}
+            </h3>
+          </Link>
+          
+          <p className="font-sans text-[11px] text-[#5C534E] leading-relaxed line-clamp-2 min-h-[32px]">
+            {product.description}
+          </p>
 
-        <div className="flex items-center justify-between text-[10px] text-[#9E9087] mt-1.5">
-          <span>{weight}</span>
-          <div className="flex items-center gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                className={`w-3 h-3 ${i < stars ? 'text-[#E6B747] fill-[#E6B747]' : 'text-gray-300 fill-gray-200'}`}
-              />
-            ))}
+          <div className="flex items-center justify-between text-[11px] text-[#9E9087] pt-1">
+            <span>{weight}</span>
+            <div className="flex items-center gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  className={`w-3 h-3 ${i < stars ? 'text-[#E6B747] fill-[#E6B747]' : 'text-gray-300 fill-gray-200'}`}
+                />
+              ))}
+              <span className="text-[10px] text-[#5C534E] ml-1">({product.rating || '5.0'})</span>
+            </div>
           </div>
         </div>
 
         {/* Price and Add to Cart wrapper */}
-        <div className="flex items-center justify-between mt-3 gap-2 pt-2 border-t border-[#E5DFD5]/25">
+        <div className="flex items-center justify-between gap-2 pt-3 border-t border-[#E5DFD5]/35 mt-auto">
           <div className="flex items-baseline gap-1.5">
-            <span className="font-sans text-sm font-bold text-[#2D0B0C]">
+            <span className="font-sans text-[15px] font-bold text-[#163728]">
               ₹{product.price}.00
             </span>
             {product.originalPrice && (
-              <span className="font-sans text-[10px] text-[#9E9087] line-through">
+              <span className="font-sans text-[11px] text-[#9E9087] line-through">
                 ₹{product.originalPrice}.00
               </span>
             )}
           </div>
 
           <button 
-            className="bg-[#163728] hover:bg-[#0C1C12] text-white p-2 rounded-[8px] transition-colors duration-[220ms] ease-in-out flex items-center justify-center hover:scale-105 active:scale-95 shadow-sm"
+            className="w-8.5 h-8.5 bg-[#163728] hover:bg-[#0C1C12] text-white rounded-full flex items-center justify-center transition-all duration-[220ms] ease-in-out hover:scale-105 active:scale-95 shadow-sm shrink-0" 
             title={`Add ${product.title} to cart`}
             aria-label={`Add ${product.title} to cart`}
           >
