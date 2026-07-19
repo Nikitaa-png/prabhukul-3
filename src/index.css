@@ -42,31 +42,17 @@ section:not(#hero-section):not(#trust-stats-strip) {
   }
 }
 
-/* Shop Banner Constraints */
-.shop-banner-container {
+/* Shop Banner Styles */
+.shop-banner {
   width: 100%;
-  position: relative;
-  overflow: hidden;
   background-color: #FAF6F0;
-  height: 220px;
+  overflow: hidden;
 }
 
-.shop-banner-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
+.shop-banner img {
   display: block;
-}
-
-@media (min-width: 768px) {
-  .shop-banner-container {
-    height: 280px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .shop-banner-container {
-    height: 340px;
-  }
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }

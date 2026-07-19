@@ -56,21 +56,20 @@ export default function Shop() {
       />
       
       {/* Shop Page Banner */}
-      <div className="shop-banner-container">
+      <div className="shop-banner">
         <img 
-          src="/images/prabhukuldana,powder/Android/media/com.openai.chatgpt/file_000000002c18820b8b41f2a90dfcc7a0.png" 
-          alt="One pinch. Unmatched Aroma. - Prabhukul Hing" 
-          className="shop-banner-img" 
+          src="/images/prabhukuldana,powder/prabhukulposter/image.png" 
+          alt="Prabhukul Shop Banner" 
         />
       </div>
 
       {/* Compact Title & Breadcrumb */}
-      <div className="w-full bg-[#FAF6F0] pt-3 pb-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-          <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#2D0B0C] tracking-wide uppercase">
+      <div className="w-full bg-[#FAF6F0] pt-8 pb-4 md:pt-10 md:pb-5 lg:pt-12 lg:pb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C] tracking-wide uppercase">
             Shop
           </h1>
-          <nav className="flex items-center gap-1.5 mt-1 sm:mt-1.5 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-[#C8922A]">
+          <nav className="flex items-center justify-center gap-1.5 mt-1.5 sm:mt-2 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-[#C8922A]">
             <Link to="/" className="hover:text-[#163728] transition-colors">Home</Link>
             <span className="text-[#E5DFD5] font-normal">/</span>
             <span className="text-[#5C534E]">Shop</span>
@@ -79,7 +78,7 @@ export default function Shop() {
       </div>
 
       {/* Main Container */}
-      <div className="w-full bg-[#FAF6F0] pb-10 pt-3 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
+      <div className="w-full bg-[#FAF6F0] pb-10 pt-4 md:pt-6 lg:pt-8 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative">
           
           {/* Desktop Filter Sidebar (Sticky) */}
