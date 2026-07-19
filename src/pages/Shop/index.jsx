@@ -55,23 +55,31 @@ export default function Shop() {
         description="Browse through the premium collections of organic asafoetida (hing), digestives, amla candies, and tea at Prabhukul." 
       />
       
-      {/* Compact Hero Section */}
-      <div className="w-full bg-[#FAF6F0] border-b border-[#E5DFD5]/50 py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-[10px] font-sans uppercase tracking-[0.25em] text-[#C8922A] font-semibold block mb-2">
-            ✦ Pure & Authentic ✦
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D0B0C] uppercase tracking-wide">
-            Shop Prabhukul
+      {/* Shop Page Banner */}
+      <div className="shop-banner-container">
+        <img 
+          src="/images/prabhukuldana,powder/prabhukulposter/file_0000000085647207a9146014fbbad819.png" 
+          alt="The Secret Behind Every Delicious Meal - Prabhukul Hing Compound" 
+          className="shop-banner-img" 
+        />
+      </div>
+
+      {/* Compact Title & Breadcrumb */}
+      <div className="w-full bg-[#FAF6F0] pt-4 pb-1.5 md:pt-6 md:pb-2.5 lg:pt-8 lg:pb-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+          <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#2D0B0C] tracking-wide uppercase">
+            Shop
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#5C534E] max-w-xl mx-auto mt-2 leading-relaxed">
-            Experience the culinary purity and traditional aroma of Hathras asafoetida, premium spices, and botanical digestive candies.
-          </p>
+          <nav className="flex items-center gap-1.5 mt-1 sm:mt-1.5 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-[#C8922A]">
+            <Link to="/" className="hover:text-[#163728] transition-colors">Home</Link>
+            <span className="text-[#E5DFD5] font-normal">/</span>
+            <span className="text-[#5C534E]">Shop</span>
+          </nav>
         </div>
       </div>
 
       {/* Main Container */}
-      <div className="w-full bg-[#FAF6F0] py-12 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
+      <div className="w-full bg-[#FAF6F0] pb-10 pt-2 md:pt-3 lg:pt-4 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 relative">
           
           {/* Desktop Filter Sidebar (Sticky) */}
